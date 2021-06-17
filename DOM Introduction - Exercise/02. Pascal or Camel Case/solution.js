@@ -1,36 +1,24 @@
-function solve() {
-  let textElement = document.getElementById('text');
-  let text = textElement.value;
-  let namingConventionElement = document.getElementById('naming-convention');
-  let namingConvention = namingConventionElement.value;
+  function solve() {
+    let textElement = document.querySelector('#text');
+    let namingConventionElement = document.querySelector('naming-convention');
 
-  function camelize(str) {
-    return str.replace(/(?:^\w|[A-Z]|\b\w)/g, function(word, index) {
-      return index === 0 ? word.toLowerCase() : word.toUpperCase();
-    }).replace(/\s+/g, '');
-  }
 
-  function toPascalCase(string) {
-    return `${string}`
-      .replace(new RegExp(/[-_]+/, 'g'), ' ')
-      .replace(new RegExp(/[^\w\s]/, 'g'), '')
-      .replace(
-        new RegExp(/\s+(.)(\w+)/, 'g'),
-        ($1, $2, $3) => `${$2.toUpperCase() + $3.toLowerCase()}`
-      )
-      .replace(new RegExp(/\s/, 'g'), '')
-      .replace(new RegExp(/\w/), s => s.toUpperCase());
-  }
-let resultElement = document.getElementById('result');
+    let text = textElement.value;
+    let namingConvention = namingConventionElement.value;
 
-  if(namingConvention == 'Camel Case'){
-    resultElement.textContent = camelize(text)
-    
-  } else if(namingConvention == 'Pascal Case'){
-    resultElement.textContent = toPascalCase(text)
-  } else {
-resultElement.textContent == 'Error!'
+
+    function applyNamingConvention(text, convention){
+
+      const conventionSwitch = {
+'Pascal Case': ()=>  text.toLowerCase().split(' ').map(x => x[0] + x.slice(1)).join(''),
+'Camel Case':() => text.toLowerCase().split(' ').map((x,i) => x != 0 ? x[0].toUpperCase() + x.slice(1) : x).join(''),
+default :() =>  'Error!'
+
+
+
+      }
+
+      return (conventionSwitch[convention] || conventionSwitch.default)()
+    }
 
   }
-
-}
