@@ -5,7 +5,7 @@ function addItem() {
     let itemsUlElement =  document.getElementById('items');
     let liElement = document.createElement('li');
     liElement.textContent = newItemTextElement.value;
-    itemsUlElement.append(liElement);
+    itemsUlElement.appendChild(liElement);
 
-    console.log('TODO:...');
+
 }
