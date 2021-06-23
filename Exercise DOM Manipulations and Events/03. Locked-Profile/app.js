@@ -1,3 +1,23 @@
 function lockedProfile() {
-    console.log('TODO...')
+    document.getElementById('main').addEventListener('click', (e) => {
+
+        if(e.target.tagName === 'BUTTON'){
+            const profile = e.target.parentNode
+           const istLocked = profile.querySelector('input[type=radio]:checked').value === 'lock';
+             
+           if(istLocked){
+               return;
+           }
+     }
+    
+     let div = profile.querySelector('div');
+     let isVisible = div.style.display = 'block';
+    
+     div.style.display = isVisible ? 'none' : 'block';
+     e.target.textContent = isVisible ? 'Hide it' : 'Show more';
+    
+    
+    });
+    
+    
 }
